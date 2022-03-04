@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour
         rigidbody.AddForce(direction * this.speed);
         Destroy(this.gameObject, this.maxLifetime);
     }
-
+    // Destroy on collision with wall/asteroid
     private void OnCollisionEnter2D(Collision2D collision){
         Destroy(this.gameObject);
     }
