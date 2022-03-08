@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float thrustSpeed = 1.5f;
+    public float thrustSpeed = 1f;
     public float turnSpeed = 0.1f;
     private bool thrusting;
     private float turnDirection;

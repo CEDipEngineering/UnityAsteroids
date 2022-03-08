@@ -1,18 +1,27 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public Player player;
+    public ParticleSystem explosion;
     public float respawnTime = 3.0f;
     public float respawnInvulnerabilityWindow = 3.0f;
+    
     public int lives = 3;
-    public ParticleSystem explosion;
+    public Text livesText;
     public int score = 0;
+    public Text scoreText;
+
+    public void Start(){
+        SetScore(0);
+        SetLives(3);
+    }
 
     public void PlayerDied(){
         this.explosion.transform.position = this.player.transform.position;
         this.explosion.Play();
-        this.lives--;
+        SetLives(lives-1);
         if(this.lives <= 0){
             GameOver();
         } else {
@@ -26,11 +35,11 @@ public class GameManager : MonoBehaviour
 
         // TODO: Score
         if (asteroid.size < 0.75f){
-            this.score += 150;
+            SetScore(score + 150);
         } else if (asteroid.size <= 1.1f){
-            this.score += 100;
+            SetScore(score + 100);
         } else {
-            this.score += 50;
+            SetScore(score + 50);
         }
 
 
@@ -49,5 +58,17 @@ public class GameManager : MonoBehaviour
 
     private void GameOver(){
         // TODO
+    }
+
+    private void SetScore(int score)
+    {
+        this.score = score;
+        scoreText.text = score.ToString();
+    }
+
+    private void SetLives(int lives)
+    {
+        this.lives = lives;
+        livesText.text = lives.ToString();
     }
 }
