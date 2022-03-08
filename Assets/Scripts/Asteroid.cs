@@ -9,7 +9,7 @@ public class Asteroid : MonoBehaviour
     public float size = 1.0f;
     public float minSize = 0.5f;
     public float maxSize = 1.5f;
-    public float speed = 20.0f;
+    public float speed = 10.0f;
     public float maxLifetime = 30.0f;
 
     private void Awake(){
@@ -36,6 +36,7 @@ public class Asteroid : MonoBehaviour
                 CreateSplit();
                 CreateSplit();
             }
+            FindObjectOfType<GameManager>().AsteroidDestroyed(this);
             Destroy(this.gameObject);
         }
     }
@@ -46,6 +47,6 @@ public class Asteroid : MonoBehaviour
 
         Asteroid half = Instantiate(this, position, this.transform.rotation);
         half.size = this.size*0.5f;
-        half.SetTrajectory(Random.insideUnitCircle.normalized * this.speed);
+        half.SetTrajectory(Random.insideUnitCircle.normalized * this.speed/2);
     }
 }
