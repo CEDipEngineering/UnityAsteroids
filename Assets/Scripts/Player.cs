@@ -4,7 +4,7 @@ public class Player : MonoBehaviour
 {
     public float thrustSpeed = 5.0f;
     // public float turnSpeed = 0.1f;
-    public float fireRate = 2.0f; // Shots per second
+    public float fireRate = 3.0f; // Shots per second
     private bool thrusting;
     private bool shots_fired = false;
     private float turnDirection;

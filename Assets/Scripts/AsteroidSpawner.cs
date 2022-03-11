@@ -6,7 +6,8 @@ public class AsteroidSpawner : MonoBehaviour
     public float spawnRate = 2.0f;
     public int spawnAmount = 1;
     public float spawnDistance = 15.0f;
-    public float trajectoryVariance = 15.0f;
+    public float trajectoryVariance = 8.0f;
+    public float maxLifetime = 10.0f;
 
 
     private void Start(){
@@ -24,6 +25,7 @@ public class AsteroidSpawner : MonoBehaviour
             Asteroid asteroid = Instantiate(this.asteroidPrefab, spawnPoint, rotation);
             asteroid.size = Random.Range(asteroid.minSize, asteroid.maxSize);
             asteroid.SetTrajectory(rotation * -spawnDirection);
+            Destroy(asteroid, this.maxLifetime);
         }
     }
 }
