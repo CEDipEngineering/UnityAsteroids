@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float thrustSpeed = 1f;
-    public float turnSpeed = 0.1f;
+    public float thrustSpeed = 5.0f;
+    // public float turnSpeed = 0.1f;
+    public float fireRate = 2.0f; // Shots per second
     private bool thrusting;
+    private bool shots_fired = false;
     private float turnDirection;
     private Rigidbody2D rigidbody;
     public Bullet bulletPrefab;
@@ -15,14 +17,14 @@ public class Player : MonoBehaviour
 
     private void Update(){
         thrusting = Input.GetKey(KeyCode.W);
-        if (Input.GetKey(KeyCode.A)){
-            turnDirection = 1.0f;
-        } else if (Input.GetKey(KeyCode.D)){
-            turnDirection = -1.0f;
-        } else {
-            turnDirection = 0.0f;
-        }
-        if (Input.GetKeyDown(KeyCode.Space)){
+        
+        // Follow mouse 
+        var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle-90, Vector3.forward); 
+        
+        // Space-bar or left-click shoot
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0)){
             Shoot();
         }   
     }
@@ -31,14 +33,22 @@ public class Player : MonoBehaviour
         if(thrusting){
             rigidbody.AddForce(this.transform.up * this.thrustSpeed);
         }
-        if (turnDirection != 0.0f){
-            rigidbody.AddTorque(turnDirection*this.turnSpeed);
-        }
+        // if (turnDirection != 0.0f){
+        //     rigidbody.AddTorque(turnDirection*this.turnSpeed);
+        // }
     }
 
     private void Shoot(){
-        Bullet bullet = Instantiate(this.bulletPrefab, this.transform.position, this.transform.rotation);
-        bullet.Project(this.transform.up);
+        if (!shots_fired){
+            Bullet bullet = Instantiate(this.bulletPrefab, this.transform.position, this.transform.rotation);
+            bullet.Project(this.transform.up);
+            shots_fired = true;
+            Invoke(nameof(shootCooldown), 1.0f/fireRate);
+        }
+    }
+
+    private void shootCooldown(){
+        shots_fired = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision){
