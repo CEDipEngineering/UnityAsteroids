@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
     }
 
     private void GameOver(){
-        SceneManager.LoadScene("Start");
+        SceneManager.LoadScene("GameOver");
     }
 
     private void SetScore(int score)
