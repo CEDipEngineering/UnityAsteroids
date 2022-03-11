@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour
     public Text livesText;
     public int score = 0;
     public Text scoreText;
+    public int highscore;
 
     public void Start(){
         SetScore(0);
@@ -23,6 +25,10 @@ public class GameManager : MonoBehaviour
         this.explosion.Play();
         SetLives(lives-1);
         if(this.lives <= 0){
+            highscore = PlayerPrefs.GetInt ("highscore", highscore);
+            if(this.score > highscore){
+                PlayerPrefs.SetInt ("highscore", this.score);
+            }
             GameOver();
         } else {
             Invoke(nameof(Respawn), this.respawnTime);
@@ -57,7 +63,7 @@ public class GameManager : MonoBehaviour
     }
 
     private void GameOver(){
-        // TODO
+        SceneManager.LoadScene("Start");
     }
 
     private void SetScore(int score)
