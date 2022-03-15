@@ -33,11 +33,13 @@ public class GameManager : MonoBehaviour
         } else {
             Invoke(nameof(Respawn), this.respawnTime);
         }
+        FindObjectOfType<SFX_Play>().playExplosion();
     }
 
     public void AsteroidDestroyed(Asteroid asteroid){
         this.explosion.transform.position = asteroid.transform.position;
         this.explosion.Play();
+        FindObjectOfType<SFX_Play>().playExplosion();
 
         // TODO: Score
         if (asteroid.size < 0.75f){
