@@ -33,13 +33,11 @@ public class GameManager : MonoBehaviour
         } else {
             Invoke(nameof(Respawn), this.respawnTime);
         }
-        FindObjectOfType<SFX_Play>().playExplosion();
     }
 
     public void AsteroidDestroyed(Asteroid asteroid){
         this.explosion.transform.position = asteroid.transform.position;
         this.explosion.Play();
-        FindObjectOfType<SFX_Play>().playExplosion();
 
         // TODO: Score
         if (asteroid.size < 0.75f){
@@ -57,6 +55,7 @@ public class GameManager : MonoBehaviour
         this.player.transform.position = Vector3.zero;
         this.player.gameObject.layer = LayerMask.NameToLayer("Noclip");
         this.player.gameObject.SetActive(true);
+        StartCoroutine(this.player.changeAlpha(6));
         Invoke(nameof(ResetCollisionMask), this.respawnInvulnerabilityWindow);
     }
 

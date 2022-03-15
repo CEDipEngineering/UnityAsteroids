@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -10,13 +11,18 @@ public class Player : MonoBehaviour
     private float turnDirection;
     private Rigidbody2D rigidbody;
     public Bullet bulletPrefab;
+
+    private GameObject player;
+
     
     private void Awake(){
         rigidbody = GetComponent<Rigidbody2D>();
+        player = GameObject.Find("Player");
     }
 
     private void Update(){
         thrusting = Input.GetKey(KeyCode.W);
+        
         
         // Follow mouse 
         var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
@@ -60,4 +66,16 @@ public class Player : MonoBehaviour
         }
     }
 
+
+
+    public IEnumerator changeAlpha(int flashCount){
+        var playerRenderer = player.GetComponent<Renderer>();
+        for(int i=0; i < flashCount; i++)
+        {
+            playerRenderer.material.SetColor("_Color", new Color(1.0f,1.0f,1.0f,0.5f));
+            yield return new WaitForSeconds(0.25f);
+            playerRenderer.material.SetColor("_Color", new Color(1.0f,1.0f,1.0f,1.0f));
+            yield return new WaitForSeconds(0.25f);
+        }
+    }
 }
