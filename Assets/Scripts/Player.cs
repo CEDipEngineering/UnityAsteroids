@@ -32,6 +32,11 @@ public class Player : MonoBehaviour
         // Space-bar or left-click shoot
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0)){
             Shoot();
+        }
+
+        // Bomb
+        if(Input.GetKeyDown(KeyCode.R)){
+            FindObjectOfType<GameManager>().useBomb();
         }   
     }
 
