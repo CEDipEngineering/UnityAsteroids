@@ -14,10 +14,13 @@ public class Player : MonoBehaviour
 
     private GameObject player;
 
+    public GameObject shield;
+
     
     private void Awake(){
         rigidbody = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
+        this.shield.SetActive(false);
     }
 
     private void Update(){
@@ -38,6 +41,12 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R)){
             FindObjectOfType<GameManager>().useBomb();
         }   
+
+        // Shield
+        if(Input.GetKeyDown(KeyCode.Q)){
+            FindObjectOfType<GameManager>().useShield();
+        }   
+
     }
 
     private void FixedUpdate(){
@@ -83,4 +92,5 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
         }
     }
+
 }

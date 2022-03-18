@@ -14,8 +14,14 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     public Text scoreText;
     public int bombs = 3;
+    public int shields = 3;
     public Text bombsText;
+    
+    public Text shieldsText;
+
     public int highscore;
+
+    private bool shieldActive = false;
 
     public void Start(){
         SetScore(0);
@@ -32,6 +38,19 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    public void useShield(){
+        if(this.shields > 0 && !this.shieldActive){
+            this.shieldActive = true;
+            this.shields--;
+            this.shieldsText.text = this.shields.ToString();
+            this.player.gameObject.layer = LayerMask.NameToLayer("Noclip");
+            this.player.shield.SetActive(true);
+            Invoke(nameof(ResetCollisionMask), this.respawnInvulnerabilityWindow);
+        }
+    }
+
+
 
     public void PlayerDied(){
         this.explosion.transform.position = this.player.transform.position;
@@ -72,6 +91,8 @@ public class GameManager : MonoBehaviour
 
     private void ResetCollisionMask(){
         this.player.gameObject.layer = LayerMask.NameToLayer("Player");
+        this.player.shield.SetActive(false);
+        this.shieldActive = false;
     }
 
     private void GameOver(){
