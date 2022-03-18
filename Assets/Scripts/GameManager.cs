@@ -81,6 +81,11 @@ public class GameManager : MonoBehaviour
         Destroy(asteroid.gameObject);
     }
 
+    public void ShieldCaptured(Shield shield){
+        this.shields ++;
+        this.shieldsText.text = this.shields.ToString();
+        Destroy(shield.gameObject);
+    }
     private void Respawn(){
         this.player.transform.position = Vector3.zero;
         this.player.gameObject.layer = LayerMask.NameToLayer("Noclip");
