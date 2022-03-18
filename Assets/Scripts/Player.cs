@@ -6,8 +6,11 @@ public class Player : MonoBehaviour
     public float thrustSpeed = 5.0f;
     // public float turnSpeed = 0.1f;
     public float fireRate = 3.0f; // Shots per second
+    public float starFireCooldown = 5.0f; // Star shots per second
+    public int numStarShots = 12;
     private bool thrusting;
     private bool shots_fired = false;
+    private bool star_shots_fired = false;
     private float turnDirection;
     private Rigidbody2D rigidbody;
     public Bullet bulletPrefab;
@@ -40,6 +43,11 @@ public class Player : MonoBehaviour
         // Bomb
         if(Input.GetKeyDown(KeyCode.R)){
             FindObjectOfType<GameManager>().useBomb();
+        }
+
+        // Star shot
+        if(Input.GetMouseButton(1)){
+            StarShoot();
         }   
 
         // Shield
@@ -67,8 +75,26 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void StarShoot(){
+        if (!star_shots_fired){
+            for(int i = 0; i<numStarShots; i++){
+                float theta = i * 2 * Mathf.PI / numStarShots;
+                float x = Mathf.Sin(theta);
+                float y = Mathf.Cos(theta);
+                Bullet bullet = Instantiate(this.bulletPrefab, this.transform.position, Quaternion.identity);
+                bullet.Project(new Vector2(x,y));
+                star_shots_fired = true;
+            }
+            Invoke(nameof(starShootCooldown), starFireCooldown);
+        }
+    }
+ 
     private void shootCooldown(){
         shots_fired = false;
+    }
+
+    private void starShootCooldown(){
+        star_shots_fired = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision){
