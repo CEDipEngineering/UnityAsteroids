@@ -61,9 +61,6 @@ public class Player : MonoBehaviour
         if(thrusting){
             rigidbody.AddForce(this.transform.up * this.thrustSpeed);
         }
-        // if (turnDirection != 0.0f){
-        //     rigidbody.AddTorque(turnDirection*this.turnSpeed);
-        // }
     }
 
     private void Shoot(){
@@ -99,6 +96,12 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision){
         if (collision.gameObject.tag == "Asteroid"){
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.angularVelocity = 0.0f;
+            this.gameObject.SetActive(false);
+            FindObjectOfType<GameManager>().PlayerDied();
+        }
+        if (collision.gameObject.tag == "Missile"){
             rigidbody.velocity = Vector3.zero;
             rigidbody.angularVelocity = 0.0f;
             this.gameObject.SetActive(false);

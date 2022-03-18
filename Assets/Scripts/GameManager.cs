@@ -81,6 +81,14 @@ public class GameManager : MonoBehaviour
         Destroy(asteroid.gameObject);
     }
 
+    public void MissileDestroyed(Missile missile){
+        this.explosion.transform.position = missile.transform.position;
+        this.explosion.Play();
+        FindObjectOfType<SFX_Play>().playExplosion();
+        SetScore(score+200);
+        Destroy(missile.gameObject);
+    }
+
     private void Respawn(){
         this.player.transform.position = Vector3.zero;
         this.player.gameObject.layer = LayerMask.NameToLayer("Noclip");
