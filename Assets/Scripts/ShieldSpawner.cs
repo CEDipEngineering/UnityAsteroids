@@ -25,5 +25,6 @@ public class ShieldSpawner : MonoBehaviour
             Destroy(shield.gameObject, this.maxLifetime);
         }
     }
+    
 
 }
