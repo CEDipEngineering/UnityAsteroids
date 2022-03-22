@@ -145,10 +145,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: 8693225f90a001845b4721e065c76f6b, type: 3}
-  - {fileID: 21300000, guid: 46352028eccec6241a1967b6077a79f3, type: 3}
-  - {fileID: 21300000, guid: 683abe3d09fbdae45b3294a82b5ce79c, type: 3}
-  - {fileID: 21300000, guid: 28c101cebb1662045b409a9f3051615f, type: 3}
+  - {fileID: 21300000, guid: 82b8078d16c14164d9bbf33cab73d2ed, type: 3}
+  - {fileID: 21300000, guid: 2ce1870ba210ef248924ac04d6024cd5, type: 3}
+  - {fileID: 21300000, guid: 23e7d7e64ad9e5641a87384312dce809, type: 3}
+  - {fileID: 21300000, guid: 40bb459d76c742a47a2bd38d44d1f16c, type: 3}
   size: 1
   minSize: 0.5
   maxSize: 1.5
