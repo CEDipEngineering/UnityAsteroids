@@ -65,6 +65,7 @@ public class Player : MonoBehaviour
 
     private void Shoot(){
         if (!shots_fired){
+            FindObjectOfType<SFX_Play>().playShot();
             Bullet bullet = Instantiate(this.bulletPrefab, this.transform.position, this.transform.rotation);
             bullet.Project(this.transform.up);
             shots_fired = true;
@@ -74,7 +75,8 @@ public class Player : MonoBehaviour
 
     private void StarShoot(){
         if (!star_shots_fired){
-            float arc = Mathf.PI/9;
+            FindObjectOfType<SFX_Play>().playShot();
+            float arc = 2*Mathf.PI;
             Vector3 dir = this.transform.up*Mathf.Deg2Rad;
             for(int i = -numStarShots/2; i<numStarShots/2; i++){
                 float theta = i * arc / numStarShots + Mathf.Atan2(dir.y, -dir.x) - Mathf.PI/2;
