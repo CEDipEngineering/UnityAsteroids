@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class AsteroidSpawner : MonoBehaviour
 {
@@ -9,9 +10,11 @@ public class AsteroidSpawner : MonoBehaviour
     public float trajectoryVariance = 8.0f;
     public float maxLifetime = 10.0f;
 
+    public GameManager gm;
+
 
     private void Start(){
-        InvokeRepeating(nameof(Spawn), this.spawnRate, this.spawnRate);
+        StartCoroutine(Spawner());
     }
 
     private void Spawn(){
@@ -28,4 +31,16 @@ public class AsteroidSpawner : MonoBehaviour
             Destroy(asteroid, this.maxLifetime);
         }
     }
+
+    private IEnumerator Spawner(){
+        float asteroidPerSec = 0.5f;
+        while(true){
+            asteroidPerSec = (FindObjectOfType<GameManager>().score / 1000)/10 + 0.5f;
+            Debug.Log(FindObjectOfType<GameManager>().score / 1000);
+            this.Spawn();
+            yield return new WaitForSeconds(1.0f/asteroidPerSec);
+
+        }
+    }
+    
 }

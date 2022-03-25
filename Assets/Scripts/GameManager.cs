@@ -94,6 +94,12 @@ public class GameManager : MonoBehaviour
         this.shieldsText.text = this.shields.ToString();
         Destroy(shield.gameObject);
     }
+
+     public void BombCaptured(Bomb bomb){
+        this.bombs ++;
+        this.bombsText.text = this.bombs.ToString();
+        Destroy(bomb.gameObject);
+    }
     
     private void Respawn(){
         this.player.transform.position = Vector3.zero;

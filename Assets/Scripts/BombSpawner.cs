@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShieldSpawner : MonoBehaviour
+public class BombSpawner : MonoBehaviour
 {
-    public Shield shieldPrefab;
+    public Bomb bombPrefab;
     public float spawnRate = 3.0f;
     public int spawnAmount = 1;
     public float spawnDistance = 1.0f;
@@ -21,10 +21,8 @@ public class ShieldSpawner : MonoBehaviour
         for (int i = 0; i<this.spawnAmount; i++){
             Vector3 spawnDirection = Random.insideUnitCircle.normalized;
             Vector3 spawnPoint = this.transform.position + spawnDirection;
-            Shield shield = Instantiate(this.shieldPrefab, spawnPoint, Quaternion.identity);
-            Destroy(shield.gameObject, this.maxLifetime);
+            Bomb bomb = Instantiate(this.bombPrefab, spawnPoint, Quaternion.identity);
+            Destroy(bomb.gameObject, this.maxLifetime);
         }
     }
-    
-
 }

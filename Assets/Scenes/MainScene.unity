@@ -5081,10 +5081,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missilePrefab: {fileID: -5701108695644032393, guid: 8b0131cb98a2eac4aa618ebd52460430, type: 3}
-  spawnRate: 5
+  spawnRate: 8
   spawnAmount: 1
   spawnDistance: 15
-  maxLifetime: 15
+  maxLifetime: 7
 --- !u!4 &104662216
 Transform:
   m_ObjectHideFlags: 0
@@ -5542,6 +5542,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 295904639}
   m_CullTransparentMesh: 1
+--- !u!1 &380976122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 380976124}
+  - component: {fileID: 380976123}
+  m_Layer: 0
+  m_Name: BombSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &380976123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380976122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60e5cb9090ca39f4cb2e884e463bbebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bombPrefab: {fileID: 3855871157330271450, guid: 56f2219f58edad94bb832bfbfc07461f, type: 3}
+  spawnRate: 37
+  spawnAmount: 1
+  spawnDistance: 20
+  maxLifetime: 3
+--- !u!4 &380976124
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380976122}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.6817614, y: 0.32979116, z: -1.6112235}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &487658606
 GameObject:
   m_ObjectHideFlags: 0
@@ -5781,6 +5829,7 @@ MonoBehaviour:
   spawnDistance: 15
   trajectoryVariance: 15
   maxLifetime: 10
+  gm: {fileID: 0}
 --- !u!4 &725141890
 Transform:
   m_ObjectHideFlags: 0
@@ -6224,7 +6273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa112c61459059e4aacbbec70f60542d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrustSpeed: 1
+  thrustSpeed: 2
   fireRate: 3
   starFireCooldown: 5
   numStarShots: 12
@@ -6268,8 +6317,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.5
-  m_LinearDrag: 1
+  m_Mass: 0.3
+  m_LinearDrag: 1.5
   m_AngularDrag: 1
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -6807,9 +6856,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shieldPrefab: {fileID: 2213832866917660397, guid: 9293c58ee7bd6a742ad9cfeace2916b6, type: 3}
-  spawnRate: 30
+  spawnRate: 28
   spawnAmount: 1
-  spawnDistance: 15
+  spawnDistance: 20
   maxLifetime: 3
 --- !u!4 &1993624435
 Transform:
