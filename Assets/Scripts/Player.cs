@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
         }
 
         // Bomb
-        if(Input.GetKeyDown(KeyCode.R)){
+        if(Input.GetKeyDown(KeyCode.E)){
             FindObjectOfType<GameManager>().useBomb();
         }
 
@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
         }   
 
         // Shield
-        if(Input.GetKeyDown(KeyCode.Q)){
+        if(Input.GetKeyDown(KeyCode.R)){
             FindObjectOfType<GameManager>().useShield();
         }   
 

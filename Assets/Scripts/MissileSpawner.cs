@@ -18,7 +18,7 @@ public class MissileSpawner : MonoBehaviour
             Vector3 spawnDirection = Random.insideUnitCircle.normalized * this.spawnDistance;
             Vector3 spawnPoint = this.transform.position + spawnDirection;
             Missile missile = Instantiate(this.missilePrefab, spawnPoint, Quaternion.identity);
-            Destroy(missile, this.maxLifetime);
+            Destroy(missile.gameObject, this.maxLifetime);
         }
     }
 }
