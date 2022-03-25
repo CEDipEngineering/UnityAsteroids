@@ -5730,7 +5730,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bombPrefab: {fileID: 3855871157330271450, guid: 56f2219f58edad94bb832bfbfc07461f, type: 3}
-  spawnRate: 37
+  spawnRate: 29
   spawnAmount: 1
   spawnDistance: 20
   maxLifetime: 3
@@ -7143,7 +7143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shieldPrefab: {fileID: 2213832866917660397, guid: 9293c58ee7bd6a742ad9cfeace2916b6, type: 3}
-  spawnRate: 28
+  spawnRate: 37
   spawnAmount: 1
   spawnDistance: 20
   maxLifetime: 3
