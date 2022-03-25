@@ -19,8 +19,9 @@ public class BombSpawner : MonoBehaviour
     // Update is called once per frame
     private void Spawn(){
         for (int i = 0; i<this.spawnAmount; i++){
-            Vector3 spawnDirection = Random.insideUnitCircle.normalized;
-            Vector3 spawnPoint = this.transform.position + spawnDirection;
+            float spawnY = Random.Range(Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y, Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).y);
+            float spawnX = Random.Range(Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).x, Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0)).x);
+            Vector3 spawnPoint = new Vector3(spawnX, spawnY, 0);
             Bomb bomb = Instantiate(this.bombPrefab, spawnPoint, Quaternion.identity);
             Destroy(bomb.gameObject, this.maxLifetime);
         }
