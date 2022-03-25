@@ -74,8 +74,10 @@ public class Player : MonoBehaviour
 
     private void StarShoot(){
         if (!star_shots_fired){
-            for(int i = 0; i<numStarShots; i++){
-                float theta = i * 2 * Mathf.PI / numStarShots;
+            float arc = Mathf.PI/9;
+            Vector3 dir = this.transform.up*Mathf.Deg2Rad;
+            for(int i = -numStarShots/2; i<numStarShots/2; i++){
+                float theta = i * arc / numStarShots + Mathf.Atan2(dir.y, -dir.x) - Mathf.PI/2;
                 float x = Mathf.Sin(theta);
                 float y = Mathf.Cos(theta);
                 Bullet bullet = Instantiate(this.bulletPrefab, this.transform.position, Quaternion.identity);
