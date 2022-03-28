@@ -35,8 +35,11 @@ public class AsteroidSpawner : MonoBehaviour
     private IEnumerator Spawner(){
         float asteroidPerSec = 0.5f;
         while(true){
-            asteroidPerSec = (FindObjectOfType<GameManager>().score / 1000)/10 + 0.5f;
-            Debug.Log(FindObjectOfType<GameManager>().score / 1000);
+            try {
+                asteroidPerSec = (FindObjectOfType<GameManager>().score / 1000)/10 + 0.5f;
+            } catch {
+                asteroidPerSec = 2.0f;
+            }
             this.Spawn();
             yield return new WaitForSeconds(1.0f/asteroidPerSec);
 
